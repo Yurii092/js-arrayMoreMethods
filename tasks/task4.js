@@ -1,10 +1,19 @@
-// Маємо масив об'єктів, де кожен об'єкт представляє автомобіль з інформацією про її бренд, модель і витрату палива. 
-// Завдання — перевірити, чи всі машини в масиві мають витрату палива менше 6 л/100 км. 
-// Якщо це так, то фільтруємо машини по бренду і повертаємо ті, що найбільш економні.
-
 function getMostFuelEfficientCars(cars, brand) {
-  // Ваш код
+  const allEfficient = cars.every(car => car.fuelConsumption < 6);
+
+  if (!allEfficient) {
+    return [];
+  }
+
+  const carsByBrand = cars.filter(car => car.brand === brand);
+
+  if (carsByBrand.length === 0) return [];
+
+  const minFuel = Math.min(...carsByBrand.map(car => car.fuelConsumption));
+
+  return carsByBrand.filter(car => car.fuelConsumption === minFuel);
 }
+
 
 // Приклад використання:
 const cars = [

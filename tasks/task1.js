@@ -1,11 +1,13 @@
-// Задача 1: Написати функцію, яка повертає найпопулярніші товарні категорії на основі продажів.
-// Спочатку фільтруємо товари, які продані більше 5 разів, потім сортуємо їх за кількістю продажів,
-// а потім залишаємо тільки унікальні категорії товарів.
-"ВИКОРИСТОВУВАТИ ЛИШЕ МЕТОДИ МАСИВІВ filter, map, sort. Для того щоб залишити лише унікальні категорії товарів можна використати конструкцію new Set, або використати метод filter()/indexOf()/forEach()"
-
 function getPopularCategories(products) {
-  //Ваш код
-}
+    const filtered = products.filter(product => product.sales > 5);
+  
+    const sorted = filtered.sort((a, b) => b.sales - a.sales);
+  
+    const categories = sorted.map(product => product.category);
+  
+    return [...new Set(categories)];
+  }
+  
 
 // Приклад використання:
 const products = [
